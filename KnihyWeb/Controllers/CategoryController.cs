@@ -17,6 +17,10 @@ namespace KnihyWeb.Controllers
 
             return View(objCategoryList);
         }
+        public IActionResult Create()
+        {
+        return View();
+        }
 
     }
 }
