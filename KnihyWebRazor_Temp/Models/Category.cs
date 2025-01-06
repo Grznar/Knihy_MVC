@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
-namespace KnihyWeb.Models
+namespace KnihyWebRazor_Temp.Models
 {
     public class Category
     {
@@ -13,8 +13,9 @@ namespace KnihyWeb.Models
         [DisplayName("Category Name")]
         public string Name { get; set; }
         [DisplayName("Display Order")]
-        [Range(1,100,ErrorMessage ="Display order must be between 1 - 100")]
+        [Range(1, 100, ErrorMessage = "Display order must be between 1 - 100")]
         public int DisplayOrder { get; set; }
     }
-    
+
 }
+

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/KnihyWeb.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     
 </head>
 <body>
@@ -38,6 +39,7 @@
     </header>
     <div class="container ">
         <main role="main" class="pb-3 secondary text-light ">
+            <partial name="_Notification" />
             @RenderBody()
         </main>
     </div>
