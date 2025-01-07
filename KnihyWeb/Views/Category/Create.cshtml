@@ -2,7 +2,7 @@
 <form method="post">
 <div class="border p-3 mt-4">
 	<div class="row pb-2">
-		<h2 class="text-light ">
+		<h2 class="text-primary">
 			Create category
 		</h2>
 	</div>
@@ -10,7 +10,7 @@
 	<div class="mb-3 row p-1">
 		<label asp-for="Name" class="p-0"></label>
 			<input asp-for="Name"  class="form-control" />
-			<span asp-validation-for="Name" class="text-danger"></span>
+			<span asp-validation-for="Name" class="text-danger"></span>	
 	</div>
 		<div class="mb-3 row p-1">
 			<label asp-for="DisplayOrder" class="p-0"></label>
@@ -23,7 +23,7 @@
 		
 	</div>
 			<div class="col-6 col-md-3">
-				<a asp-controller="Category" asp-action="Index" class="btn btn-secondary border form-control">Back to List</a>
+				<a asp-page"Category" asp-action="Index" class="btn btn-secondary border form-control">Back to List</a>
 			</div>
 		</div>
 </div>
