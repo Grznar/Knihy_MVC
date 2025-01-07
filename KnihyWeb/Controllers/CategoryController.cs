@@ -1,19 +1,20 @@
-﻿using KnihyWeb.Data;
-using KnihyWeb.Models;
+﻿using Knihy.DataAccess.Data;
+using Knihy.DataAccess.Repository.IRepository;
+using Knihy.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KnihyWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
+        private readonly ICategoryRepository _categoryRepo;
+        public CategoryController(ICategoryRepository db)
         {
-            _db = db;
+            _categoryRepo = db;
         }
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _db.Categories.ToList();
+            List<Category> objCategoryList = _categoryRepo.GetAll().ToList();
 
             return View(objCategoryList);
         }
@@ -31,8 +32,8 @@ namespace KnihyWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                _categoryRepo.Add(obj);
+                _categoryRepo.Save();
                 TempData["success"] = "Category created succesfully";
                 return RedirectToAction("Index", "Category");
             }
@@ -47,7 +48,7 @@ namespace KnihyWeb.Controllers
             {
                 return NotFound();
             }
-            Category? catergoryFromDb = _db.Categories.FirstOrDefault(u => u.Id == id);
+            Category? catergoryFromDb = _categoryRepo.Get(u => u.Id == id);
             if (catergoryFromDb == null)
             {
                 return NotFound();
@@ -62,8 +63,8 @@ namespace KnihyWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _categoryRepo.Update(obj);
+                _categoryRepo.Save();
                 TempData["success"] = "Category edited succesfully";
                 return RedirectToAction("Index", "Category");
             }
@@ -78,7 +79,7 @@ namespace KnihyWeb.Controllers
             {
                 return NotFound();
             }
-            Category? catergoryFromDb = _db.Categories.FirstOrDefault(u => u.Id == id);
+            Category? catergoryFromDb = _categoryRepo.Get(u => u.Id == id); 
             if (catergoryFromDb == null)
             {
                 return NotFound();
@@ -90,13 +91,13 @@ namespace KnihyWeb.Controllers
         public IActionResult DeletePOST(int? id)
         {
 
-            Category? obj = _db.Categories.FirstOrDefault(c => c.Id == id);
+            Category? obj = _categoryRepo.Get(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.Categories.Remove(obj);
-            _db.SaveChanges();
+            _categoryRepo.Remove(obj);
+            _categoryRepo.Save();
             TempData["success"] = "Category deleted succesfully";
             return RedirectToAction("Index", "Category");
 

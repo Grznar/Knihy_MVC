@@ -16,4 +16,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Knihy.DataAccess\Knihy.DataAccess.csproj" />
+    <ProjectReference Include="..\Knihy.Models\Knihy.Models.csproj" />
+    <ProjectReference Include="..\Knihy.Utility\Knihy.Utility.csproj" />
+  </ItemGroup>
+
 </Project>

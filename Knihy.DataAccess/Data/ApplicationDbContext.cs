@@ -1,13 +1,13 @@
-﻿using KnihyWeb.Models;
+﻿using Knihy.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace KnihyWeb.Data
+namespace Knihy.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-                
+                    
         }
         public DbSet<Category> Categories { get; set; }
 

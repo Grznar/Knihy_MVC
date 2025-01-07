@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using KnihyWeb.Models;
+using Knihy.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KnihyWeb.Controllers
