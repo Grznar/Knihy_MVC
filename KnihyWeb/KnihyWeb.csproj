@@ -26,4 +26,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Product\Upsert.cshtml" />
+  </ItemGroup>
+
 </Project>
