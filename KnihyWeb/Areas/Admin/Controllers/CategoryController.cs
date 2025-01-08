@@ -1,6 +1,7 @@
 ﻿using Knihy.DataAccess.Repository.IRepository;
 using Knihy.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace KnihyWeb.Areas.Admin.Controllers
 {
@@ -20,6 +21,7 @@ namespace KnihyWeb.Areas.Admin.Controllers
         }
         public IActionResult Create()
         {
+            
             return View();
         }
         [HttpPost]
