@@ -21,7 +21,7 @@ namespace KnihyWeb.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties:"Category").ToList();
            
             return View(objProductList);
         }
@@ -152,6 +152,13 @@ namespace KnihyWeb.Areas.Admin.Controllers
 
         }
 
-
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll(int id)
+        {
+            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+            return Json(new { data = objProductList });
+        }
+        #endregion
     }
 }
