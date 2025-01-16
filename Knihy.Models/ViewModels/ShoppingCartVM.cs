@@ -12,7 +12,6 @@ namespace Knihy.Models.ViewModels
         public IEnumerable<ShoppingCart> ShoppingCartList { get; set; }
         public double OrderTotal { get; set; }
 
-        [NotMapped]
-        public double Price { get; set; }
+        
     }
 }
