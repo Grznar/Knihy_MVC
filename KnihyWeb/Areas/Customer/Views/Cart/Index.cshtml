@@ -1,8 +1,9 @@
 ﻿@model ShoppingCartVM
 <form method="post">
     <br />
+    <div class="pb-5">
     <div class="card shadow border-0">
-        <div class="card-header bg-secondary bg-gradient text-light ml-0 py-4">
+        <div class="card-header bg-secondary bg-gradient text-light ml-0 py-4 pb-5">
             <div class="row px-4">
                 <div class="col-6">
                     <h5 class="pt-2 text-white">
@@ -68,7 +69,7 @@
                         <ul class="list-group mb-4">
                             <li class="d-flex justify-content-between align-items-center">
                                 <h5 class="text-dark fw-semibold text-uppercase"> Total</h5>
-                                <h4 class="text-dark fw-bolder"></h4>@Model.OrderTotal.ToString("c")
+                                <h4 class="text-dark fw-bolder"></h4>@Model.OrderHeader.OrderTotal.ToString("c")
                             </li>
                         </ul>
                     </div>
@@ -80,4 +81,6 @@
                 </div>
             </div>
         </div>
+       </div>
+    </div>
 </form>
