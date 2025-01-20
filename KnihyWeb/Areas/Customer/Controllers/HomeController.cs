@@ -2,7 +2,9 @@
 using System.Security.Claims;
 using Knihy.DataAccess.Repository.IRepository;
 using Knihy.Models;
+using Knihy.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KnihyWeb.Areas.Customer.Controllers
@@ -21,6 +23,7 @@ namespace KnihyWeb.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
+            
             IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category");
             return View(productList);
         }
@@ -52,15 +55,19 @@ namespace KnihyWeb.Areas.Customer.Controllers
             {
                 cartFromDb.Count += shoppingCart.Count;
                 _unitOfWork.ShoppingCart.Update(cartFromDb);
-            //shoping cart exists
+                _unitOfWork.Save();
+                //shoping cart exists
             }
             else
             {
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
+                _unitOfWork.Save();
+                HttpContext.Session.SetInt32(SD.SessionCart,
+                _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
                 
             }
             TempData["success"] = "Cart updated succesfully";
-            _unitOfWork.Save();
+            
             return RedirectToAction(nameof(Index));
         }
 

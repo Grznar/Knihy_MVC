@@ -23,6 +23,8 @@ namespace Knihy.Utility
         public const string PaymentStatusPendign = "Pending";
         public const string PaymentStatusApproved = "Approved";
         public const string PaymentStatusDelayedPayment = "Delayed Payment";
-        public const string PaymentStatusDelayedRejected = "Rejected"; 
+        public const string PaymentStatusDelayedRejected = "Rejected";
+
+        public const string SessionCart = "SessionShoppingCart";
     }
 }
