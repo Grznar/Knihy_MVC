@@ -20,11 +20,13 @@ namespace Knihy.Models
         public string? State { get; set; }
         public string? PostalCode { get; set; }
 
-        public string? PhoneNumber { get; set; }
+        
         public int? CompanyId {get;set;}
         [ForeignKey("CompanyId")]
         [ValidateNever]
-        public Company Company { get; set; }
+        public Company? Company { get; set; }
+        [NotMapped]
+        public string Role { get; set; }
 
     }
     

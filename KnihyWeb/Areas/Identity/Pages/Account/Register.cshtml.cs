@@ -118,6 +118,7 @@ namespace KnihyWeb.Areas.Identity.Pages.Account
             public string? State { get; set; }
             public string? PostalCode { get; set; }
             public string? PhoneNumber { get; set; }
+
             public int? CompanyId { get; set; }
             [ValidateNever]
             public IEnumerable<SelectListItem> CompanyList { get; set; }
@@ -161,10 +162,11 @@ namespace KnihyWeb.Areas.Identity.Pages.Account
                 user.Name = Input.Name;
 
                 user.StreetAddress = Input.StreetAddress;
-                    user.PostalCode = Input.PostalCode;
+                user.PostalCode = Input.PostalCode;
                 user.PhoneNumber = Input.PhoneNumber;
                 user.City = Input.City;
                 user.State = Input.State;
+                
                 if(Input.Role==SD.Role_Company)
                 {
                 user.CompanyId = Input.CompanyId;
