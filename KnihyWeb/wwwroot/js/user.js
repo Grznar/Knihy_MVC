@@ -28,14 +28,14 @@ function loadDataTable() {
                         <div class="text-center">
                         
                         <a onclick="LockUnlock('${data.id}')" class="btn btn-danger text-white" style="cursor:pointer;width:100px;">Lock <i class="bi bi-unlock-fill"></i></a>
-                        <a class="btn btn-danger text-white" style="cursor:pointer;width:150px;">Permission <i class="bi bi-pencil-square"></i></a>
+                        <a href="/Admin/User/RoleManager?id=${data.id}" class="btn btn-danger text-white" style="cursor:pointer;width:150px;">Permission <i class="bi bi-pencil-square"></i></a>
                             </div>`
                     }
                     else {
                         return `
                         <div class="text-center">
                         <a onclick="LockUnlock('${data.id}')" class="btn btn-success text-white" style="cursor:pointer;width:100px;">Unlock <i class="bi bi-unlock-fill"></i></a>
-                        <a class="btn btn-danger text-white" style="cursor:pointer;width:150px;">Permission <i class="bi bi-pencil-square"></i></a>
+                        <a href="/Admin/User/RoleManager?id=${data.id}" class="btn btn-danger text-white" style="cursor:pointer;width:150px;">Permission <i class="bi bi-pencil-square"></i></a>
                             </div>`
                     }
                     
