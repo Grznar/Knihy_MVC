@@ -18,11 +18,11 @@ namespace KnihyWeb.Areas.Admin.Controllers
     public class UserController : Controller
     {
         
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         public UserController( UserManager<IdentityUser> userManager, 
-            UnitOfWork unitOfWork,RoleManager<IdentityRole> roleManager)
+            IUnitOfWork unitOfWork,RoleManager<IdentityRole> roleManager)
         {
             
             _userManager = userManager; 
@@ -70,35 +70,35 @@ namespace KnihyWeb.Areas.Admin.Controllers
 
         }
         [HttpPost]
-        public IActionResult RoleManager(ApplicationUserVM user)
+        public IActionResult RoleManager(ApplicationUserVM applicationUserVM)
         {
-            ApplicationUser userFromDb = _unitOfWork.ApplicationUser.Get(u => u.Id == user.ApplicationUser.Id);
-            string oldRole= _userManager.GetRolesAsync(_unitOfWork.ApplicationUser.Get(u => u.Id == user.ApplicationUser.Id)).GetAwaiter().GetResult().FirstOrDefault();
-            if (!(user.ApplicationUser.Role == oldRole))
+            ApplicationUser applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == applicationUserVM.ApplicationUser.Id);
+            string oldRole= _userManager.GetRolesAsync(_unitOfWork.ApplicationUser.Get(u => u.Id == applicationUserVM.ApplicationUser.Id)).GetAwaiter().GetResult().FirstOrDefault();
+            if (!(applicationUserVM.ApplicationUser.Role == oldRole))
             {
                 //role updated
 
-                if (user.ApplicationUser.Role == SD.Role_Company)
+                if (applicationUserVM.ApplicationUser.Role == SD.Role_Company)
                 {
-                    userFromDb.CompanyId = user.ApplicationUser.CompanyId;
+                    applicationUser.CompanyId = applicationUserVM.ApplicationUser.CompanyId;
                 }
-                if (oldRole == SD.Role_Company)
+                 if (oldRole == SD.Role_Company)
                 {
-                    userFromDb.CompanyId = null;
+                    applicationUser.CompanyId = null;
 
                 }
-                _unitOfWork.ApplicationUser.Update(userFromDb);
+                _unitOfWork.ApplicationUser.Update(applicationUser);
                 _unitOfWork.Save();
 
-                _userManager.RemoveFromRoleAsync(userFromDb, oldRole).GetAwaiter().GetResult();
-                _userManager.AddToRoleAsync(userFromDb, user.ApplicationUser.Role).GetAwaiter().GetResult();
+                _userManager.RemoveFromRoleAsync(applicationUser, oldRole).GetAwaiter().GetResult();
+                _userManager.AddToRoleAsync(applicationUser, applicationUserVM.ApplicationUser.Role).GetAwaiter().GetResult();
             }
             else
             {
-                if(oldRole==SD.Role_Company && userFromDb.CompanyId!=user.ApplicationUser.CompanyId)
+                if(oldRole==SD.Role_Company && applicationUser.CompanyId!=applicationUserVM.ApplicationUser.CompanyId)
                 {
-                    userFromDb.CompanyId=user.ApplicationUser.CompanyId;
-                    _unitOfWork.ApplicationUser.Update(userFromDb);
+                    applicationUser.CompanyId=applicationUserVM.ApplicationUser.CompanyId;
+                    _unitOfWork.ApplicationUser.Update(applicationUser);
                     _unitOfWork.Save();
 
                 }
