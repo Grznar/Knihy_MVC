@@ -13,7 +13,7 @@
 	<div class="card-body pt-4">
 		<form method="post" class="row" enctype="multipart/form-data">
 			<input asp-for="@Model.Product.Id" hidden />
-			<input asp-for="@Model.Product.ImageUrl" hidden />
+			@* <input asp-for="@Model.Product.ImageUrl" hidden /> *@
 			<div class="row"></div>
 			<div class="col-10">
 				<div class="border p-3">
@@ -70,9 +70,9 @@
 					</div>
 					<div class="form-floating py-2 col-12">
 						
-						<label asp-for="@Model.Product.ImageUrl" class="ms-2"></label>
-						<input	type="file" id="uploadBox" name="file"  class="form-control border-0 shadow" />
 						
+						<input type="file" id="uploadBox" name="files" class="form-control border-0 shadow" multiple />
+						<label asp-for="Product.ProductImages" class="ms-2"></label>
 
 					</div>
 
@@ -99,8 +99,24 @@
 				</div>
 			</div>
 			<div class="col-2">
-				<img src="@Model.Product.ImageUrl" width="100%"
-				style="border-radius:5px;border:1px solid white"/>
+				@if (Model.Product.ProductImages != null)
+				{
+					foreach (var img in Model.Product.ProductImages)
+					{
+						<div class="border pt-1 m-2 text-center">
+							<img src="@img.ImageUrl" width="100%" style="border-radius:5px;border:1px solid white" />
+							<a asp-action="DeleteImage" class="btn btn-danger" asp-route-imageId="@img.Id">
+							<i class="bi bi-trash-fill">
+									Delete
+							</i>
+							
+							</a>
+						</div>
+
+					}
+				}
+				
+				
 			</div>
 			
 		</form>

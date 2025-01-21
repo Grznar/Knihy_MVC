@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Knihy.DataAccess.Repository.IRepository
 {
-    public interface IApplicationUserRepository : IRepository<ApplicationUser>
+    public interface IProductImageRepository : IRepository<ProductImage>
     {
+        void Update(ProductImage obj);
         
-        public void Update(ApplicationUser applicationUser);
     }
 }
