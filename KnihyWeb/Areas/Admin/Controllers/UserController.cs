@@ -30,23 +30,23 @@ namespace KnihyWeb.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult RoleManager(string id)
-        {
-            var roleId = _db.UserRoles.FirstOrDefault(u=>u.UserId == id).RoleId;
-            if (roleId == null)
-            {
-                return View(NotFound());
-            }
-            ApplicationUserVM user = new ApplicationUserVM()
-            {
-                ActiveRole=roleId,
-                ApplicationUser = _db.ApplicationUsers.FirstOrDefault(u => u.Id == id),
-                RoleList = _db.UserRoles(),
+        //public IActionResult RoleManager(string id)
+        //{
+        //    var roleId = _db.UserRoles.FirstOrDefault(u=>u.UserId == id).RoleId;
+        //    if (roleId == null)
+        //    {
+        //        return View(NotFound());
+        //    }
+        //    ApplicationUserVM user = new ApplicationUserVM()
+        //    {
+        //        ActiveRole=roleId,
+        //        ApplicationUser = _db.ApplicationUsers.FirstOrDefault(u => u.Id == id),
+        //        RoleList = _db.Roles.Select(i=>new )
 
-            };
-            return View(userFromDb);
+        //    };
+        //    return View(userFromDb);
         
-        }
+        //}
         
         #region API CALLS
         [HttpGet]
